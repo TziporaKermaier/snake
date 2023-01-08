@@ -22,6 +22,16 @@ class SnakeGame:
 
     def end_round(self) -> None:
         pass
-
+    
     def is_over(self) -> bool:
-        return False
+    #if snake head goes out of bounds game ends
+    if self.__x >= game_utils.WIDTH or self.__x < 0:
+        return True
+    if self.__y >= game_utils.HEIGHT or self.__y <=0:
+        return True
+    #if snake head bumps into itself game ends
+    for block in self.cells[0:len(self.cells)-2]:
+        if self.__x  == block[0] and self.__y == block[1]:
+            return True
+    return False
+
